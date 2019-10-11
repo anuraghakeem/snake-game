@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef, useReducer} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import useInterval from './useInterval'
 
 const Timer= ({pause})=> {

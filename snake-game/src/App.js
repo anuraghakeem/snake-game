@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useReducer} from 'react';
+import initState from './initState';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App=()=> {
+    const [state, dispatch] = useReducer(null,initState()); // todo: write the reducer
+    console.log("state: ", state);
+    // Generate grid based on row X col
+    const drawGrid = () => {
+      const {grid} = state;
+      return (
+       grid.map((row, i) => {
+         return row.map(cell => {
+           return <div key={cell.row+cell.col} className="cell cell-border"  />
+         });
+       })
+      );
+    }
+    return (
+      <div className="game">
+         <div className="grid-container">
+          <div className="grid">
+            {drawGrid()}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
-export default App;
+  export default App;
